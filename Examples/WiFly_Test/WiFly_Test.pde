@@ -5,9 +5,9 @@
  * Tom Waldock, 2011 
  */
 
-#include <WProgram.h>
+#include <Arduino.h>
 #include <Streaming.h>
-#include <NewSoftSerial.h>
+#include <SoftwareSerial.h>
 #include "WiFlySerial.h"
 #include "MemoryFree.h"
 #include "Credentials.h"
@@ -102,12 +102,12 @@ void loop() {
   // while a response is being received.
   
   while(WiFly.uart.available() > 0) {
-    Serial.print(WiFly.uart.read(), BYTE);
+    Serial.write(WiFly.uart.read());
   }
   
   if(Serial.available()) { // Outgoing data
-    WiFly.uart.print( (chOut = Serial.read()) , BYTE);
-    Serial.print (chOut, BYTE);
+    WiFly.uart.write( (chOut = Serial.read()) );
+    Serial.write(chOut);
   }
 
 } //loop

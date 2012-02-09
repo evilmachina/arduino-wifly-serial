@@ -24,9 +24,9 @@
  
  Copyright GPL 2.1 Tom Waldock 2011
  */
-#include <WProgram.h>
+#include <Arduino.h>
 #include <Time.h>
-#include <NewSoftSerial.h>
+#include <SoftwareSerial.h>
 #include <Streaming.h>
 #include <PString.h>
 #include "WiFlySerial.h"
@@ -34,8 +34,9 @@
 
 
 // Set these to your local values
-#define MY_WIFI_SSID "YourSSID"
-#define MY_WIFI_PASSPHRASE "YourWiFiPassphrase"
+#define MY_WIFI_SSID "mySSID"
+#define MY_WIFI_PASSPHRASE "MySecurePassphrase"
+
 
 // Connect the WiFly TX pin to the Arduino RX pin  (Transmit from WiFly-> Receive into Arduino)
 // Connect the WiFly RX pin to the Arduino TX pin  (Transmit from Arduino-> Receive into WiFly)
@@ -285,9 +286,9 @@ void loop() {
 
   //  WiFly.clearDebugChannel();
   // if not connected restart link
-  while (! WiFly.isConnected() ) {
-    Reconnect();
-  } // while not connected
+  // while (! WiFly.isConnected() ) {
+  //  Reconnect();
+  //} // while not connected
   //  WiFly.setDebugChannel( (Print*) &Serial);
 
   Serial << "Clear leftovers" << endl;
@@ -334,6 +335,5 @@ void loop() {
     WiFly.exitCommandMode();
   } // if Open connection found.
 }
-
 
 

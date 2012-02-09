@@ -36,9 +36,9 @@
  
  Copyright GPL 2.1 Tom Waldock 2011
  */
-#include <WProgram.h>
+#include <Arduino.h>
 #include <Time.h>
-#include <NewSoftSerial.h>
+#include <SoftwareSerial.h>
 #include <Streaming.h>
 #include <PString.h>
 #include "WiFlySerial.h"
@@ -74,6 +74,10 @@
 // server hosting POST example php script
 #define MY_SERVER_POST MY_SERVER_GET
 #define MY_SERVER_POST_URL "/cgi-bin/userprog_post.php"
+
+// server hosting SWITCH php script
+#define MY_SERVER_SWITCH MY_SERVER_GET
+#define MY_SERVER_SWITCH_URL "/cgi-bin/userprog_switch.php"
 
 // prog_char s_WT_SETUP_00[] PROGMEM = "nist1-la.ustiming.org";  /* change to your favorite NTP server */
 prog_char s_WT_SETUP_01[] PROGMEM = "set u m 0x1";
@@ -356,7 +360,7 @@ int Do_GET_Example(  int iLoopCounter, float fValue ) {
 
     while ( millis()  < TimeOut) {
       if (  WiFly.uart.available() > 0 ) {
-        Serial.print( WiFly.uart.read(), BYTE);
+        Serial.write( WiFly.uart.read());
       }
     }
     
@@ -427,7 +431,7 @@ int Do_POST_Example(  int iLoopCounter, float fValue ) {
 
     while ( millis()  < TimeOut) {
       if (  WiFly.uart.available() > 0 ) {
-        Serial.print( WiFly.uart.read(), BYTE);
+        Serial.write(WiFly.uart.read());
       }
     }
     
@@ -478,7 +482,7 @@ int GetSwitchReqState( PString& hRequest, char* pTempBuf, int iBufLen) {
 
     while ( millis()  < TimeOut) {
       if (  WiFly.uart.available() > 0 ) {
-        Serial.print( WiFly.uart.read(), BYTE);
+        Serial.write( WiFly.uart.read());
       }
     }
 
@@ -495,7 +499,7 @@ int GetSwitchReqState( PString& hRequest, char* pTempBuf, int iBufLen) {
 //
 //    while ( millis()  < TimeOut) {
 //      if (  WiFly.uart.available() > 0 ) {
-//        Serial.print( WiFly.uart.read(), BYTE);
+//        Serial.write( WiFly.uart.read() );
 //      }
 //    }
     
@@ -582,7 +586,7 @@ int Do_POST_Switch(  int iLoopCounter, float fValue ) {
 
     while ( millis()  < TimeOut) {
       if (  WiFly.uart.available() > 0 ) {
-        Serial.print( WiFly.uart.read(), BYTE);
+        Serial.write( WiFly.uart.read() );
       }
     }
     
@@ -656,7 +660,7 @@ int Do_POST_Switch(  int iLoopCounter, float fValue ) {
 //
 //    while ( millis()  < TimeOut) {
 //      if (  WiFly.uart.available() > 0 ) {
-//        Serial.print( WiFly.uart.read(), BYTE);
+//        Serial.write( WiFly.uart.read() );
 //      }
 //    }
 //WiFly.closeConnection();
@@ -668,7 +672,6 @@ int Do_POST_Switch(  int iLoopCounter, float fValue ) {
 //  WiFly.setDebugChannel( NULL );
 //  return 0;
 //}
-
 
 
 

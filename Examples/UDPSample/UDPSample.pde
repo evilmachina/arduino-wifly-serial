@@ -54,9 +54,9 @@
  
  Copyright GPL 2.1 Tom Waldock 2011
  */
-#include <WProgram.h>
+#include <Arduino.h>
 #include <Time.h>
-#include <NewSoftSerial.h>
+#include <SoftwareSerial.h>
 #include <Streaming.h>
 #include <PString.h>
 #include "WiFlySerial.h"
@@ -444,6 +444,5 @@ void loop() {
   
   
 }
-
 
 
