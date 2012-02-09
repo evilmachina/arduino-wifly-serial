@@ -63,6 +63,9 @@ Additional commentary on http://www.arduinology.tumblr.com
 =======
 HISTORY
 =======
+
+*** 2012-Feb-08 Updated code to work properly with Arduino 1.0 SDK.
+
 *** 2011-Apr-07 Removed bug in ExtractDetail introduced yesterday.
 
 *** Initial library release.
